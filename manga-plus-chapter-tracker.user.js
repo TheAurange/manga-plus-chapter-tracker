@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name    [Manga Plus] Chapter Tracker
 // @author  Aurange
-// @version 1.2
+// @version 1.3
 // @match   https://mangaplus.shueisha.co.jp/titles/*
 // @grant   window.close
 // ==/UserScript==
@@ -15,7 +15,7 @@ new MutationObserver(function(mutationList, observer){
     observer.disconnect();
 
     let cT = document.querySelector("h1").innerText,
-        cN = c.children[0].children[2].innerText.split(/Chapter /i)[1].split(":")[0];
+        cN = c.children[0].children[2].innerText.split(/Chapter /i)[1]?.split(":")[0];
 
     if(localStorage.getItem(cT) === null || Number(cN) > Number(localStorage.getItem(cT))){
       localStorage.setItem(cT, cN);
